@@ -1,9 +1,9 @@
-<!--Page for users to login using their username and password. Should also route to the admin page if they log in.-->
+<!--Page for users to login using their username and password. Also routes to the welcome page if they log in.-->
 <?php
     include_once "loader.php";
 //TODO: Connect to Controller
-    if (isset($_SESSION['admin']) && $_SESSION['admin']){
-        redirect("adminPage.php");
+    if (isset($_SESSION['login']) && $_SESSION['login']){
+        redirect("welcomePage.php");
     }
 
     if(isset($_POST['submit'])) {
@@ -63,6 +63,11 @@
                     <!-- Register button -->
                     <div class="text-center">
                         <p>Not a member? <a href="signupPage.php">Register</a></p>
+                    </div>
+
+                    <!-- Admin Login button -->
+                    <div class="text-center">
+                        <p>Are you an Admin? <a href="adminLoginPage.php">Login Here</a></p>
                     </div>
                     </form>
 

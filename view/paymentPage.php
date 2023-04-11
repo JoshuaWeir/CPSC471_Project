@@ -61,11 +61,11 @@
                             <form role="form" method="post" action="<?=$_GET["action"]?>" ">
                             <div class="form-group"> <label for="username">
                                     <h6>Card Owner</h6>
-                                </label> <input type="text" name="username" placeholder="Card Owner Name" required class="form-control "> </div>
+                                </label> <input type="text" name="username" placeholder="Card Owner Name..." required class="form-control "> </div>
                             <div class="form-group"> <label for="cardNumber">
                                     <h6>Card number</h6>
                                 </label>
-                                <div class="input-group"> <input type="text" name="cardNumber" placeholder="Valid card number" class="form-control" value="<?= isset($regUser) ? $regUser->getPaymentMethod() : '' ?>" required>
+                                <div class="input-group"> <input type="text" name="cardNumber" placeholder="Valid card number..." class="form-control" value="<?= isset($regUser) ? $regUser->getPaymentMethod() : '' ?>" required>
                                     <div class="input-group-append"> <span class="input-group-text text-muted"> <i class="fab fa-cc-visa mx-1"></i> <i class="fab fa-cc-mastercard mx-1"></i> <i class="fab fa-cc-amex mx-1"></i> </span> </div>
                                 </div>
                             </div>

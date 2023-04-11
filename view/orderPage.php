@@ -84,7 +84,7 @@ include_once "loader.php";
                         <h5>Book details: </h5>
                         <ul class="list-group">
                             <li class="list-group-item">Book: <b><?= $_SESSION["book"]["name"]?></b></li>
-                            <li class="list-group-item">Price: $<b><?= round($_SESSION["ticket"]["price"], 2)?></b></li>
+                            <li class="list-group-item">Price: $<b><?= round($_SESSION["book"]["price"], 2)?></b></li>
                         </ul>
                         <br>
 

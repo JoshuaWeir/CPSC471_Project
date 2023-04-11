@@ -80,8 +80,8 @@
     <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
         <i class="checkmark">✓</i>
     </div>
-    <h1>Success</h1>
-    <h3>We cancelled your ticket</h3>
+    <h1>Success!</h1>
+    <h3>Your ticket has been successfully cancelled!</h3>
     <br/>
     <h5>Credit ID: <b><?=$credit->getUniqueId()?></b></h5>
     <br/>

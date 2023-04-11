@@ -62,7 +62,7 @@
                 </tr>
 
                 <tbody>
-
+<!--TODO: Ensure correct connections once finalized-->
                 <?php
                 foreach ($books as $book):
                     if ($book->getAvailable() == 1):
