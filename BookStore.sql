@@ -80,7 +80,7 @@ CREATE TABLE Book (
     AdminID int NOT NULL,
     PublisherName VARCHAR(50) NOT NULL,
     AuthorName VARCHAR(50) NOT NULL,
-    ISBN BIGINT(13) NOT NULL,
+    ISBN BIGINT NOT NULL,
     ReleaseDate DATE NOT NULL,
     InventoryDate DATE NOT NULL,
     Price FLOAT NOT NULL,
@@ -150,6 +150,7 @@ CREATE TABLE PurchaseOrder (
     Price int NOT NULL,
     Address VARCHAR(50) NOT NULL,
     RegUserFlag BOOLEAN NOT NULL,
+    NumberOfBooks int NOT NULL,
     PRIMARY KEY (ID, UserID),
     FOREIGN KEY (UserID) REFERENCES RegisteredUser(ID) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -166,6 +167,7 @@ CREATE TABLE ReturnOrder (
     RegUserFlag BOOLEAN NOT NULL,
     CreditValue int NOT NULL,
     CreditID int NOT NULL,
+    NumberOfBooks int NOT NULL,
     PRIMARY KEY (ID, UserID, CreditID),
     FOREIGN KEY (UserID) REFERENCES RegisteredUser(ID) ON DELETE CASCADE ON UPDATE CASCADE
 );

@@ -3,19 +3,18 @@ class ReturnOrder {
     private $regUserFlag;
     private $id;
     private $price;
-    private $address;
-    private $booksSold;
+    private $credit;
+    private $booksReturned = array();
 
     // Constructor
 
-    public function ReturnOrder(&$regUserFlag, &$id, &$price, &$address, &$booksSold) {
+    public function PurchaseOrder(&$regUserFlag, &$id, &$price, &$credit, &$booksReturned) {
         $this->regUserFlag = $regUserFlag;
         $this->id = $id;
         $this->price = $price;
-        $this->address = $address;
-        $this->booksSold = $booksSold;
+        $this->credit = $credit;
+        $this->booksReturned = $booksReturned;
     }
-
     // Getters and Setters
 
     public function getRegUserFlag() {
@@ -42,24 +41,24 @@ class ReturnOrder {
         $this->price = $price;
     }
 
-    public function getAddress() {
-        return $this->address;
+    public function getCredit() {
+        return $this->credit;
     }
 
-    public function setAddress(&$address) {
-        $this->address = $address;
+    public function setCredit(&$credit) {
+        $this->credit = $credit;
     }
 
-    public function getBooksSold() {
-        return $this->booksSold;
+    public function getBooksReturned() {
+        return $this->booksReturned;
     }
 
-    public function setBooksSold(&$booksSold) {
-        $this->booksSold = $booksSold;
+    public function setBooksReturned(&$booksReturned) {
+        $this->booksReturned = $booksReturned;
     }
 
     public function addBook(&$book){
-        array_push($this->booksSold, $book);
+        array_push($this->booksReturned, $book);
     }
 }
 
