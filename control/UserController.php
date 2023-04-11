@@ -17,8 +17,8 @@ class UserController extends Controller {
         }
         else{
             
-            $returnorders = $this->orders.getReturnOrderByID($result["ID"]);
-            $purchaseorders = $this->orders.getPurchaseOrderByID($result["ID"]); 
+            $returnorders = $this->orders->getReturnOrderByID($result["ID"]);
+            $purchaseorders = $this->orders->getPurchaseOrderByID($result["ID"]); 
             $user = new RegisteredUser($result["ID"], $result["Name"], $result["Address"], $result["Username"], $result["Password"], $result["Email"], $result["BirthDate"],
                 $result["Points"], $result["CardNum"], $returnorders, $purchaseorders);
             return $user;
