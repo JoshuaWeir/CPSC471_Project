@@ -3,6 +3,8 @@
 require_once("Controller.php");
 
 class OrderController extends Controller {
+
+    function __construct(){}
     public function getAllPurchaseOrders(){
         $pOrders = array();
         $results = self::find_this_query("SELECT * FROM PurchaseOrder");
@@ -61,7 +63,4 @@ class OrderController extends Controller {
 
     }
     public function addReturnOrder(){}
-}
-
-    }
 }
