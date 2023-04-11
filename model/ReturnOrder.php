@@ -3,7 +3,6 @@ class ReturnOrder {
     private $regUserFlag;
     private $id;
     private $price;
-    private $address;
     private $booksSold;
 
     // Constructor
@@ -12,7 +11,6 @@ class ReturnOrder {
         $this->regUserFlag = $regUserFlag;
         $this->id = $id;
         $this->price = $price;
-        $this->address = $address;
         $this->booksSold = $booksSold;
     }
 
@@ -40,14 +38,6 @@ class ReturnOrder {
 
     public function setPrice(&$price) {
         $this->price = $price;
-    }
-
-    public function getAddress() {
-        return $this->address;
-    }
-
-    public function setAddress(&$address) {
-        $this->address = $address;
     }
 
     public function getBooksSold() {
