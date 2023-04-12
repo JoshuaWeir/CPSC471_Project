@@ -62,7 +62,7 @@ class BookController extends Controller {
             $result = self::find_this_query("SELECT * FROM Book WHERE ISBN LIKE '%$search%'");
         }
         else{
-            $result = self::find_this_query("SELECT * FROM Book WHERE Title LIKE '%$search%' OR AuthorName LIKE '%$search%");
+            $result = self::find_this_query("SELECT * FROM Book WHERE Title LIKE '%$search%' OR AuthorName LIKE '%$search%'");
         }
 
         foreach($result as $book){
