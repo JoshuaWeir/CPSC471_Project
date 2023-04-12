@@ -1,6 +1,15 @@
-<!--Page to take payment info, should autofill if registered-->
+<!--Page to take payment info-->
 <?php
 include_once dirname(__DIR__). "/loader.php";
+
+if (isset($_POST["submit"])) {
+    if((new OrderController)->addPurchaseOrder($_SESSION["userId"], $_SESSION["Price"], $_POST["address"])){
+        redirect("successPage.php");
+    } else {
+        $message = "Something went wrong! Please try again.";
+    }
+}
+
 ?>
 
 <style><?php include "style.css"; ?> </style>
@@ -58,11 +67,14 @@ include_once dirname(__DIR__). "/loader.php";
                         <div id="credit-card" class="tab-pane fade show active pt-3">
 
 
-                            <form role="form" method="post" action="<?=$_GET["action"]?>" ">
+                            <form role="form" method="post">
                             <div class="form-group"> <label for="username">
                                     <h6>Card Owner</h6>
-                                </label> <input type="text" name="username" placeholder="Card Owner Name..." required class="form-control "> </div>
-                            <div class="form-group"> <label for="cardNumber">
+                                </label> <input type="text" name="name" placeholder="Card Owner Name..." required class="form-control "> </div>
+                            <div class="form-group"> <label for="name">
+                                    <h6>Address</h6>
+                                </label> <input type="text" name="address" placeholder="Address..." required class="form-control "> </div>
+                            <div class="form-group"> <label for="address">
                                     <h6>Card number</h6>
                                 </label>
                                 <div class="input-group"> <input type="text" name="cardNumber" placeholder="Valid card number..." class="form-control" value="<?= isset($regUser) ? $regUser->getPaymentMethod() : '' ?>" required>
@@ -83,7 +95,7 @@ include_once dirname(__DIR__). "/loader.php";
                                         </label> <input type="text" required class="form-control"> </div>
                                 </div>
                             </div>
-                            <div class="card-footer"> <button type="submit" class="subscribe btn btn-primary btn-block shadow-sm" > Confirm Payment </button>
+                            <div class="card-footer"> <button type="submit" name="submit" class="subscribe btn btn-primary btn-block shadow-sm" > Confirm Payment </button>
                                 </form>
                             </div>
                         </div> <!-- End -->

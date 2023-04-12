@@ -1,6 +1,7 @@
 <?php
 
 require_once("Controller.php");
+include_once dirname(__DIR__). "/loader.php";
 
 class OrderController extends Controller {
 
@@ -24,14 +25,19 @@ class OrderController extends Controller {
         return $rOrders;
     }
     public function getPurchaseOrderByID($id){
-        $pOrders = array();
-        $results = self::find_this_query("SELECT * FROM PurchaseOrder WHERE PurchaseOrder.ID = $id");
-        foreach($results as $pOrder){
-            array_push($pOrders, new PurchaseOrder($pOrder["RegUserFlag"], $pOrder["ID"], 
-                $pOrder["Price"], $pOrder["Address"], $pOrder["NumberOfBooks"]));
+
+        $result = self::find_this_query("SELECT * FROM PurchaseOrder WHERE ID LIKE '%$id%'");
+        if (!empty($result)) {
+            $order = new PurchaseOrder($pOrder["RegUserFlag"], $pOrder["ID"],
+                $pOrder["Price"], $pOrder["Address"], $pOrder["NumberOfBooks"]);
+            $_SESSION["purchaseId"] = $order->getId();
+            return $order;
+        } else {
+            echo "No order found.";
+            return NULL;
         }
-        return $pOrders;
     }
+
     public function getReturnOrderByID($id){
         $rOrders = array();
         $results = self::find_this_query("SELECT * FROM ReturnOrder WHERE ReturnOrder.ID = $id");
@@ -45,7 +51,7 @@ class OrderController extends Controller {
         $pOrders = array();
         $results = self::find_this_query("SELECT * FROM PurchaseOrder WHERE PurchaseOrder.UserID = $UserID");
         foreach($results as $pOrder){
-            array_push($pOrders, new PurchaseOrder($pOrder["RegUserFlag"], $pOrder["ID"], 
+            array_push($pOrders, new PurchaseOrder($pOrder["RegUserFlag"], $pOrder["ID"],
                 $pOrder["Price"], $pOrder["Address"], $pOrder["NumberOfBooks"]));
         }
         return $pOrders;
@@ -62,32 +68,37 @@ class OrderController extends Controller {
     public function addPurchaseOrder($id,$price,$address) {
         if($id != NULL) {
             $flag = 1;
+            $uid = $id;
         } else {
             $flag = 0;
+            $uid = 0;
         }
         $uniqueId = rand(100000, 999999);
-        self::insert("INSERT INTO PurchaseOrder VALUES ('$uniqueId', '$id', '$price', '$address', '$flag')");
+        self::insert("INSERT INTO PurchaseOrder VALUES ('$uniqueId', '$uid', '$price', '$address', '$flag')");
+        $this->getPurchaseOrderByID($uniqueId);
         return true;
-
     }
-    public function addReturnOrder($pid, $uid) {
-        $results = self::find_this_query("SELECT * FROM PurchaseOrder WHERE ID = $pid");
+    public function addReturnOrder($pid, $id) {
+        $result = self::find_this_query("SELECT * FROM PurchaseOrder WHERE ID = '$pid'");
         if (empty($result)) {
-            echo 'Order not found';
+            echo 'Order not found.';
             return null;
         } else {
             $booksSold = 1;
             $porder = new PurchaseOrder($result[0]["RegUserFlag"], $result[0]["ID"], $result[0]["Price"],
             $result[0]["Address"], $booksSold);
-            if ($porder->getId() != NULL) {
+            if($id != NULL) {
                 $flag = 1;
+                $uid = $id;
             } else {
                 $flag = 0;
+                $uid = 0;
             }
             $price = $porder->getPrice();
             $uniqueId = rand(100000, 999999);
-            $creditId = rand(1000, 9999);
+            $creditId = rand(1000,9999);
             self::insert("INSERT INTO ReturnOrder VALUES ('$uniqueId', '$uid', '$price', '$flag', '$price', '$creditId')");
+            $this->getPurchaseOrderByID($uniqueId);
             return true;
         }
     }

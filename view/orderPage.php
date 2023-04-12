@@ -1,14 +1,6 @@
 <!--Cart page that shows the books in the current session, or in the cart.-->
 <?php
 include_once dirname(__DIR__). "/loader.php";
-//TODO: Connect to Controllers
-
-if (isset($_POST["submit"])) {
-    if((new OrderController())->addPurchaseOrder()){
-    } else {
-        $message = "Something went wrong! Please try again.";
-    }
-}
 ?>
 <style><?php include "style.css"; ?> </style>
 
@@ -67,18 +59,18 @@ if (isset($_POST["submit"])) {
 
                         <h5>Book details: </h5>
                         <ul class="list-group">
-                            <li class="list-group-item">Book: <b><?= $_SESSION["currentBook"]?></b></li>
-                            <li class="list-group-item">Price: $<b><?= round($_SESSION["price"], 2)?></b></li>
+                            <li class="list-group-item">Book: <b><?= stripslashes($_SESSION["currentBook"])?></b></li>
+                            <li class="list-group-item">Price: $<b><?= round($_SESSION["Price"], 2)?></b></li>
                         </ul>
                         <br>
 
-                        <form method="post" action="orderPage.php">
-                            <div>
-                                <input type="text" name="creditID" class="form-control" id="inputPassword2" placeholder="Credit ID">
-                            </div>
-                            <br>
-                            <button type="submit" class="btn btn-primary mb-2">Apply Credit</button>
-                        </form>
+<!--                        <form method="post" action="orderPage.php">-->
+<!--                            <div>-->
+<!--                                <input type="text" name="creditID" class="form-control" id="inputPassword2" placeholder="Credit ID">-->
+<!--                            </div>-->
+<!--                            <br>-->
+<!--                            <button type="submit" class="btn btn-primary mb-2">Apply Credit</button>-->
+<!--                        </form>-->
 
                         <?php
                         if (isset($message)) {
@@ -88,12 +80,12 @@ if (isset($_POST["submit"])) {
                         }
                         ?>
                         <br>
-                        <a type="submit" class="nav-link active btn btn-success" href="paymentPage.php?action=successPage.php"> <i class="fas fa-credit-card mr-2"></i> Payment </a>
+                        <a type="submit" class="nav-link active btn btn-success" href="paymentPage.php"> <i class="fas fa-credit-card mr-2"></i> Payment </a>
                         <br>
 
                         <br>
 
-                        <form method="post" action="checkoutPage.php">
+                        <form method="post" action="bookSearchPage.php">
                             <input type="text" name="cancel" hidden>
                             <button type="submit" class="btn btn-danger">Cancel</button>
                         </form>

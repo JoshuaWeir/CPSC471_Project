@@ -1,19 +1,9 @@
 <!--Page to confirm that the users return/cancellation has been finalized-->
 <?php
 include_once dirname(__DIR__). "/loader.php";
-//    if (isset($_SESSION["login"])) {
-//        $user = true;
-//    } else {
-//        $user = false;
-//    }
-//
-//    $oc = new OrderController();
-//    $returns = $oc->getReturnOrderByID($_SESSION["cancellationOrderID"]);
-//    foreach ($returns as $return):
-//    $value = $return->getCredit;
-//    $id = $return->getId;
-//    endforeach;
-//$credit = new Credit($id, $value);
+
+//$oc = new OrderController();
+//$credit = $oc->getReturnOrderByID();
 ?>
 <style><?php include "style.css"; ?> </style>
 
@@ -82,19 +72,16 @@ include_once dirname(__DIR__). "/loader.php";
         <i class="checkmark">✓</i>
     </div>
     <h1>Success!</h1>
-    <h3>Your ticket has been successfully cancelled!</h3>
-    <br/>
-    <h5>Credit ID: <b><?=$credit->getId()?></b></h5>
-    <br/>
-    <h5>Credit Amount: $<b><?=round($credit->getValue(), 2)?></b></h5>
-    <br/>
+    <h3>Your order has been successfully cancelled!</h3>
+<!--    <br/>-->
+<!--    <h5>Credit ID: <b>--><?php //=$order->getCredit()?><!--</b></h5>-->
+<!--    <br/>-->
+<!--    <h5>Credit Amount: $<b>--><?php //=round($order->getPrice(), 2)?><!--</b></h5>-->
+<!--    <br/>-->
+<!---->
+<!--    <h5>Please keep the Credit ID safe to use it in your next purchase!</h5>-->
+<!--    <br/>-->
 
-    <h5>Please keep the Credit ID safe to use it in your next purchase!</h5>
-    <br/>
-<!--    Might not need due to navbar-->
-<!--    <form method="get" action="index.php">-->
-<!--        <button type="submit" class="btn btn-primary">Return</button>-->
-<!--    </form>-->
 </div>
 </body>
 </html>

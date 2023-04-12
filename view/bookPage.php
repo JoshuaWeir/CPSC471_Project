@@ -1,8 +1,11 @@
 <!--Page to display book info, along with the ability to add it to the cart.-->
 <?php
 include_once dirname(__DIR__). "/loader.php";
-//TODO: Implement both controller connections, and front-end view.
+$bc = new BookController();
 $_SESSION["currentBook"] = $_GET['book'];
+$book = $bc->getBook($_SESSION["currentBook"]);
+$_SESSION["Price"] = $book->getPrice();
+
 
 ?>
 <style><?php include "style.css"; ?> </style>
@@ -53,25 +56,18 @@ $_SESSION["currentBook"] = $_GET['book'];
                     <i class="fab fa-apple fa-lg pt-3 pb-1 px-3"></i>
                     <div class="card-body">
                         <div class="text-center">
-                            <h5 class="card-title text-dark"><?= $pc->getBook()->getTitle()?></h5>
-                            <p class="text-muted mb-4">Book Page</p>
+                            <h5 class="card-title text-dark"><?= $book->getTitle()?></h5>
+                            <p class="text-muted mb-4">Order Book?</p>
                         </div>
-
-                        <?php
-                            $book = $pc->getBook();
-//                            $order["title"] = $_GET["Title"];
-//                            $order["price"] = $pc->getBook()->getPrice();
-//                            $_SESSION["order"] = $order;
-                            ?>
 
                             <h5 class="text-dark">Book: <?= $book->getTitle()?></h5>
                             <form method="post" action="orderPage.php">
 
-                                <button type="submit" class="btn btn-primary">Check Out</button>
+                                <button type="submit" class="btn btn-primary" href>Check Out</button>
                             </form>
 
                             <div class="d-flex justify-content-between total font-weight-bold mt-4">
-                                <span>Total</span><span><?= $pc->getBook()->getPrice()?></span>
+                                <span>Total</span><span><?= $book->getPrice()?></span>
                             </div>
                         <?php
                         ?>

@@ -17,9 +17,6 @@ class UserController extends Controller {
             return null;
         }
         else {
-            
-//            $returnorders = $this->orders->getReturnOrderByID($result[0]["ID"]);
-           // $purchaseorders = $this->orders->getPurchaseOrderByID($result[0]["ID"]);
             $returnorders = NULL;
             $purchaseorders = NULL;
             $user = new RegisteredUser($result[0]["ID"], $result[0]["Name"], $result[0]["Address"], $result[0]["Username"], $result[0]["Password"], $result[0]["Email"], $result[0]["BirthDate"],
@@ -54,7 +51,7 @@ class UserController extends Controller {
         }
         else{
             $uniqueId = rand(100000, 999999);
-            self::insert("INSERT INTO RegisteredUser VALUES ('$uniqueId', '$un', '$e', '$pw', '$n', '$a', '$bd', NULL, '$pm', NULL, NULL, 1)");
+            self::insert("INSERT INTO RegisteredUser VALUES ('$uniqueId', '$un', '$e', '$pw', '$n', '$a', '$bd', 0, '$pm', NULL, NULL, 1)");
             return true;
         }
     }

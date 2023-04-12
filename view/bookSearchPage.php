@@ -4,7 +4,9 @@ include_once dirname(__DIR__). "/loader.php";
 
     $bc = new BookController();
     @$bc->searchBooks($_GET["search"]);
+    unset($_SESSION["OrderId"]);
     unset($_SESSION["currentBook"]);
+    unset($_SESSION["Price"]);
 
 ?>
 
@@ -66,7 +68,7 @@ include_once dirname(__DIR__). "/loader.php";
                         ?>
                     <tr>
                         <td>
-                            <a href="bookPage.php?book=<?= $book->getTitle();?>" methods="get">
+                            <a href="bookPage.php?book=<?= addslashes($book->getTitle());?>" methods="get">
                                 <?= $book->getTitle(); ?>
                             </a>
                         </td>

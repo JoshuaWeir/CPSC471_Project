@@ -2,7 +2,7 @@
 <?php
 include_once dirname(__DIR__). "/loader.php";
     //TODO: If logged in create fetch user to display name - Placeholder methods
-    if ($_SESSION["loginu"]):
+    if ($_SESSION["loginu"] || $_SESSION["logina"]):
         $uc = new UserController();
         $user = $uc->getUser($_SESSION["userId"]);
 

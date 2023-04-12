@@ -3,7 +3,8 @@
 include_once dirname(__DIR__). "/loader.php";
 
 if (isset($_POST["submit"])) {
-    if((new OrderController())->addReturnOrder($_POST['orderID'], $_SESSION["userId"])){
+    $orderId = intval($_POST["orderId"]);
+    if((new OrderController)->addReturnOrder($orderId, $_SESSION["userId"])){
         redirect("confirmationPage.php");
     } else {
         $message = "Something went wrong! Please try again.";
@@ -14,42 +15,67 @@ if (isset($_POST["submit"])) {
 <style><?php include "style.css"; ?> </style>
 
 
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Center Align Buttons in Bootstrap</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
-<nav class="navbar">
-    <a class="active"
-       href="index.php">Calgary Local Books</a>
-    <a href="bookSearchPage.php">Search Books</a>
-    <a href="salePage.php">On Sale</a>
-    <a href="featurePage.php">New Releases</a>
-    <a href="orderPage.php">Cart</a>
-</nav>
+    <nav class="navbar">
+        <a class="active"
+           href="index.php">Calgary Local Books</a>
+        <a href="bookSearchPage.php">Search Books</a>
+        <a href="salePage.php">On Sale</a>
+        <a href="featurePage.php">New Releases</a>
+        <a href="orderPage.php">Cart</a>
+    </nav>
 
-<div class="container" style="margin-top: 8%;">
-    <div class="col-md-6 col-md-offset-3">
-        <div class="row">
-            <div id="logo" class="text-center">
-                <h1>Please Enter your Order ID:</h1><p></p>
-            </div>
-            <form role="form" id="form-buscar" method="get" action="">
-                <div class="form-group">
-                    <div class="input-group">
-                        <input id="1" class="form-control" type="number" name="orderID" placeholder="Order ID..."/>
-                        <span class="input-group-btn">
-</span>
-                    </div>
-                </div>
-            </form>
+    <style>
+        body{background: #f5f5f5}.rounded{border-radius: 1rem}.nav-pills .nav-link{color: #555}.nav-pills .nav-link.active{color: white}input[type="radio"]{margin-right: 5px}.bold{font-weight:bold}
+    </style>
+
+    <script>
+    </script>
+</head>
+<body>
+
+<div class="container py-5">
+    <!-- For demo purpose -->
+    <div class="row mb-4">
+        <div class="col-lg-8 mx-auto text-center">
+            <h1 class="display-6">Order Cancellation</h1>
         </div>
+    </div> <!-- End -->
+    <div class="row">
+        <div class="col-lg-6 mx-auto">
+            <div class="card ">
+                <div class="card-header">
+                    <!-- Credit card form content -->
+                    <div class="tab-content">
+                        <!-- credit card info-->
+                        <div id="credit-card" class="tab-pane fade show active pt-3">
 
-        <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-            <button type="submit" name="submit" class="btn btn-success btn-lg">Return Order</button>
+
+                            <form role="form" method="post">
+                                <div class="form-group"> <label for="username">
+                                        <h6>Order ID</h6>
+                                    </label> <input type="number" name="orderId" placeholder="Purchase Order ID" required class="form-control "> </div>
+                                <div class="form-group"> <label for="orderId">
+                                </div>
+                                <div class="card-footer"> <button type="submit" name="submit" class="subscribe btn btn-primary btn-block shadow-sm" > Confirm Payment </button>
+                            </form>
+                        </div>
+                    </div> <!-- End -->
+                    <!-- End -->
+                </div>
+            </div>
         </div>
     </div>
-</div>
+</body>
+</html>
 

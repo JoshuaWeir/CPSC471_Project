@@ -21,10 +21,10 @@ public static function insert($sql){
         global $database;
 
         if($database->insert($sql)) {
-            //echo "Successful";
+            echo "Successful";
         }
         else{
-            //echo "Database Failure";
+            echo "Database Failure";
         }
     }
 

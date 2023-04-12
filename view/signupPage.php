@@ -2,11 +2,9 @@
 <?php
 include_once dirname(__DIR__). "/loader.php";
 
-//TODO: Connect to Controller
 if (isset($_POST["submit"])) {
     if((new UserController)->register($_POST['name'], $_POST["address"], $_POST["email"], $_POST["birthdate"],
         $_POST["username"], $_POST["password"], $_POST["paymentMethod"])){
-        echo "Success!";
         redirect("loginPage.php");
     } else {
         $message = "Something went wrong! Please try again.";
@@ -76,7 +74,7 @@ if (isset($_POST["submit"])) {
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
-                                                <label class="form-label" for="name">Enter Your Birthdate</label>
+                                                <label class="form-label" for="birthdate">Enter Your Birthdate</label>
                                                 <input type="date" name="birthdate" id="birthdate"
                                                        placeholder="Birthdate" class="form-control" />
                                             </div>
@@ -103,8 +101,8 @@ if (isset($_POST["submit"])) {
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
-                                                <label class="form-label" for="payment">Enter a Payment Number</label>
-                                                <input type="number" name="paymentMethod" id="payment"
+                                                <label class="form-label" for="paymentMethod">Enter a Payment Number</label>
+                                                <input type="number" name="paymentMethod" id="paymentMethod"
                                                        placeholder="Payment..." class="form-control" />
                                             </div>
                                         </div>
