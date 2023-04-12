@@ -57,10 +57,10 @@ class OrderController extends Controller {
         }
         return $rOrders;
     }
-    public function addPurchaseOrder(){
-
+    public function addPurchaseOrder($id, $uid, $p, $a, $flag, $num){
+        self::insert("INSERT INTO PurchaseOrder VALUES ('$id','$uid','$p','$a','$flag','$num')");
     }
-    public function addReturnOrder(){
-
+    public function addReturnOrder($id, $uid, $p, $flag, $cv, $cid, $num){
+        self::insert("INSERT INTO ReturnOrder VALUES ('$id','$uid','$p','$flag','$cv','$cid','$num')");
     }
 }

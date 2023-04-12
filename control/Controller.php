@@ -17,5 +17,14 @@ class Controller {
         return $the_object_array;
     }
 
-    
+    public static function insert($sql){
+        global $database;
+
+        if($database->insert($sql)){
+            echo "Successful";
+        }
+        else{
+            echo "Database Failure";
+        }
+    }
 }
