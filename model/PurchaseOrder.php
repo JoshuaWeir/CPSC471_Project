@@ -8,7 +8,7 @@ class PurchaseOrder {
 
     // Constructor
 
-    public function ReturnOrder(&$regUserFlag, &$id, &$price, &$address, &$booksSold) {
+    public function PurchaseOrder(&$regUserFlag, &$id, &$price, &$address, &$booksSold) {
         $this->regUserFlag = $regUserFlag;
         $this->id = $id;
         $this->price = $price;

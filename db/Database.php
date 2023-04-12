@@ -16,6 +16,12 @@ class Database {
     }
 
     public function query($query){
+        $result = mysqli_query($this->connection, $query);
+        return $result;
+    }
+
+    public function insert($sql){
+        return $this->connection->query($sql);
         return mysqli_query($this->connection, $query);
     }
 
