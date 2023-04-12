@@ -1,10 +1,10 @@
 <!--Page to register for a new account by providing the needed information.-->
 <?php
-include_once "loader.php";
+include_once dirname(__DIR__). "/loader.php";
 
 //TODO: Connect to Controller
 if (isset($_POST["submit"])) {
-    if (AuthenticationController::signUP($_POST['name'], $_POST["address"], $_POST["username"], $_POST["birthdate"],
+    if(AuthenticationController::signUP($_POST['name'], $_POST["address"], $_POST["username"], $_POST["birthdate"],
         $_POST["password"], $_POST["email"], $_POST["paymentMethod"])){
         redirect("loginPage.php");
     } else {

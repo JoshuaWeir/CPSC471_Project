@@ -1,6 +1,6 @@
 <!--Page to confirm that the users return/cancellation has been finalized-->
 <?php
-    include_once "loader.php";
+include_once dirname(__DIR__). "/loader.php";
     if (isset($_SESSION["login"])) {
         $user = true;
     } else {

@@ -1,6 +1,6 @@
 <!--Cart page that shows the books in the current session, or in the cart.-->
 <?php
-include_once "loader.php";
+include_once dirname(__DIR__). "/loader.php";
 //TODO: Connect to Controllers
     if (isset($_POST["username"])){
         $_SESSION["book"]["username"] = $_POST["username"];

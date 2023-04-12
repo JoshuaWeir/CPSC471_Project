@@ -1,6 +1,6 @@
 <!--Page to confirm a order has been placed, and resets the session.-->
 <?php
-include_once "loader.php";
+include_once dirname(__DIR__). "/loader.php";
 //TODO: Connect Controllers
 $purchaseOrderCreation = PurchaseController::purchaseOrderCreation(/*TODO: Create Order*/);
 

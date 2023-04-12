@@ -11,7 +11,7 @@ class Book{
     private $author;
 
     //ctor
-    public function Book(&$rDate, &$iDate, &$price, &$isbn, &$id, &$title, &$publisher, &$author){
+    public function __construct(&$rDate, &$iDate, &$price, &$isbn, &$id, &$title, &$publisher, &$author){
             $this->releaseDate = $rDate;
             $this->inventoryDate = $iDate;
             $this->price = $price;

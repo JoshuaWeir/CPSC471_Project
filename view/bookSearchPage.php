@@ -1,10 +1,9 @@
 <!--Page to search from all books within the database.-->
 <?php
-    include_once('loader.php');
-
+include_once dirname(__DIR__). "/loader.php";
 //TODO: Connect Controller
-//    $bookController = new bookSearchController();
-//    @$bookController->searchMovieByName($_GET["search"]);
+    $bookController = new BookController();
+    @$bookController->searchBooks($_GET["search"]);
 //    unset($_SESSION["selectedBook"]);
 
 ?>
@@ -47,58 +46,40 @@
             </form>
         </div>
         <?php
-        if (!empty($bookController->getBooksList())):
-            $books = $bookController->getBooksList();
+            $books = $bookController->getAllBooks();
             ?>
             <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                 <thead>
                 <tr>
                     <th class="th-sm">Name</th>
                     <th class="th-sm">Author</th>
-                    <th class="th-sm">Publisher</th>
                     <th class="th-sm">ISBN</th>
                     <th class="th-sm">Price</th>
                     <th class="th-sm">Release Date</th>
                 </tr>
+                </thead>
 
                 <tbody>
-<!--TODO: Ensure correct connections once finalized-->
+
                 <?php
                 foreach ($books as $book):
-                    if ($book->getAvailable() == 1):
                         ?>
                         <tr>
                             <td>
-                                <a href="bookPage.php?book=<?= $book->getName();?>" methods="get">
-                                    <?= $book->getName(); ?>
+                                <a href="bookPage.php?book=<?= $book->getTitle();?>" methods="get">
+                                    <?= $book->getTitle(); ?>
                                 </a>
                             </td>
+                            <td><?= $book->getAuthor(); ?></td>
+                            <td><?= $book->getISBN(); ?></td>
                             <td>$<?= number_format($book->getPrice(),2,'.','');?></td>
-                            <td><?= date('m/d/Y', $book->getReleaseDate()); ?></td>
-                            <td>Public</td>
+                            <td><?=  $book->getReleaseDate(); ?></td>
                         </tr>
                     <?php
-                    elseif ($book->getAvailable() == 0 && isset($_SESSION["subscribed"]) && $_SESSION["subscribed"]):
-                        ?>
-                        <tr>
-                            <td>
-                                <a href="bookPage.php?book=<?= $book->getName();?>" methods="get">
-                                    <?= $book->getName(); ?>
-                                </a>
-                            </td>
-                            <td>$<?= number_format($book->getPrice(),2,'.','');?></td>
-                            <td><?= date('m/d/Y', $book->getReleaseDate()); ?></td>
-                            <td>Subscribers</td>
-                        </tr>
-                    <?php
-                    endif;
                 endforeach;
                 ?>
+
                 </tbody>
-                </thead>
             </table>
-        <?php
-        endif;
-        ?>
     </div>
 </div>

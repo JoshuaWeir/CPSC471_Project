@@ -5,7 +5,7 @@ class OtherBook extends Book{
 
     //ctor
     public function OtherBook(&$rDate, &$iDate, &$price, &$isbn, &$id, &$title, &$publisher, &$author, &$genre){
-        parent::Book($rDate, $iDate, $price, $isbn, $id, $title, $publisher, $author);
+        parent::__construct($rDate, $iDate, $price, $isbn, $id, $title, $publisher, $author);
         $this->genre = $genre;
     }
 

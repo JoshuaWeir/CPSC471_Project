@@ -22,8 +22,8 @@ class BookController extends Controller {
 
         }
         foreach($results as $book){
-            array_push($books, new Book($book["ReleaseDate"], $book["InventoryDate"], $book["Price"],
-                $book["ISBN"], $book["ID"], $book["Title"], $book["PublisherName"], $book["AuthorName"]));
+            $books[] = new Book($book["ReleaseDate"], $book["InventoryDate"], $book["Price"],
+                $book["ISBN"], $book["ID"], $book["Title"], $book["PublisherName"], $book["AuthorName"]);
         }
         return $books;
     }
@@ -34,13 +34,13 @@ class BookController extends Controller {
         $yesterday = date("Y-m-d",strtotime("-1 days"));
         $twodays = date("Y-m-d",strtotime("-2 days"));
         $results = self::find_this_query("SELECT * FROM Book WHERE ReleaseDate LIKE '%$today%' OR 
-            ReleaseDate LIKE '%$yesterday' OR ReleaseDate = '%$twodays'");
+            ReleaseDate LIKE '%$yesterday%' OR ReleaseDate = '%$twodays%'");
         
-        foreach($results as $book){
-            array_push($newbooks, new Book($book["ReleaseDate"], $book["InventoryDate"], $book["Price"],
-                $book["ISBN"], $book["ID"], $book["Title"], $book["PublisherName"], $book["AuthorName"]));
+        foreach($results as $book) {
+            $newBooks[] = new Book($book["ReleaseDate"], $book["InventoryDate"], $book["Price"],
+                $book["ISBN"], $book["ID"], $book["Title"], $book["PublisherName"], $book["AuthorName"]);
         }
-        return $newbooks;
+        return $newBooks;
     }
 
     public function getSaleBooks(){
@@ -49,27 +49,30 @@ class BookController extends Controller {
         $results = self::find_this_query("SELECT * FROM Book WHERE InventoryDate LIKE '%$threeweeks%'");
         
         foreach($results as $book){
-            array_push($salebooks, new Book($book["ReleaseDate"], $book["InventoryDate"], $book["Price"],
-                $book["ISBN"], $book["ID"], $book["Title"], $book["PublisherName"], $book["AuthorName"]));
+            $saleBooks[] = new Book($book["ReleaseDate"], $book["InventoryDate"], $book["Price"],
+                $book["ISBN"], $book["ID"], $book["Title"], $book["PublisherName"], $book["AuthorName"]);
         }
         return $saleBooks;
     }
 
-    public function searchBooks($search){
-        $isbn = str_replace('-', '', $search);
-        $foundbooks = array();
-        if((strlen($isbn) == 10 || strlen($isbn) == 13) && is_numeric($isbn)){
-            $result = self::find_this_query("SELECT * FROM Book WHERE ISBN LIKE '%$search%'");
-        }
-        else{
-            $result = self::find_this_query("SELECT * FROM Book WHERE Title LIKE '%$search%' OR AuthorName LIKE '%$search%");
-        }
+    public function searchBooks($search = ""){
+        if($search = "") {
+            $isbn = str_replace('-', '', $search);
+            $foundBooks = array();
+            if ((strlen($isbn) == 10 || strlen($isbn) == 13) && is_numeric($isbn)) {
+                $result = self::find_this_query("SELECT * FROM Book WHERE ISBN LIKE '%$search%'");
+            } else {
+                $result = self::find_this_query("SELECT * FROM Book WHERE Title LIKE '%$search%' OR AuthorName LIKE '%$search%");
+            }
 
-        foreach($result as $book){
-            array_push($foundbooks, new Book($book["ReleaseDate"], $book["InventoryDate"], $book["Price"],
-                $book["ISBN"], $book["ID"], $book["Title"], $book["PublisherName"], $book["AuthorName"]));
+            foreach ($result as $book) {
+                $foundBooks[] = new Book($book["ReleaseDate"], $book["InventoryDate"], $book["Price"],
+                    $book["ISBN"], $book["ID"], $book["Title"], $book["PublisherName"], $book["AuthorName"]);
+            }
+        } else {
+            $foundBooks = $this->getAllBooks();
         }
+        return $foundBooks;
     }
-
 
 }

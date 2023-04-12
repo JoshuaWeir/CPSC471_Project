@@ -1,11 +1,10 @@
 <!--A landing page for the user once logged in.-->
 <?php
-    include_once('loader.php');
+include_once dirname(__DIR__). "/loader.php";
     //TODO: If logged in create fetch user to display name - Placeholder methods
-//    if ($_SESSION["login"]):
-//        $dc = new DashboardController();
-//        $dc->userLoad();
-//        $user = getUser();
+    if ($_SESSION["login"]):
+        $ac = new AuthenticationController();
+        $user = $ac->getUser();
 
     if (isset($_GET["action"]) && $_GET["action"] == "logout") {
         AuthenticationController::logOut();
@@ -37,19 +36,15 @@
     <style>
         body{background: #f5f5f5}.rounded{border-radius: 1rem}.nav-pills .nav-link{color: #555}.nav-pills .nav-link.active{color: white}input[type="radio"]{margin-right: 5px}.bold{font-weight:bold}
     </style>
-
-    <script>
-    </script>
 </head>
 <body>
 
 <div class="container py-5">
-    <!-- For demo purpose -->
     <div class="row mb-4">
         <div class="col-lg-8 mx-auto text-center">
             <h1 class="display-6">Welcome to Calgary Local Books</h1>
         </div>
-    </div> <!-- End -->
+    </div>
     <div class="row">
         <div class="col-lg-6 mx-auto">
             <div class="card ">
@@ -62,8 +57,7 @@
                                 <li class="list-group-item">Linked Address: <b><?= $user->getAddress()?></b></li>
                                 <li class="list-group-item">Linked Birthdate: <b><?= $user->getBirthdate()?></b></li>
                             </ul>
-                        </div> <!-- End -->
-                        <!-- End -->
+                        </div>
                     </div>
                 </div>
                 <div class="bg-white shadow-sm pt-4 pl-2 pr-2 pb-2">
@@ -74,4 +68,7 @@
 
             </div>
 </body>
+<?php
+endif;
+?>
 </html>

@@ -1,6 +1,6 @@
 <!--Page for users to login using their username and password. Also routes to the welcome page if they log in.-->
 <?php
-include_once "loader.php";
+include_once dirname(__DIR__). "/loader.php";
 //TODO: Connect to Controller
 if (isset($_SESSION['login']) && $_SESSION['login']){
     redirect("adminPage.php");

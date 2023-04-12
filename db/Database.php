@@ -10,14 +10,18 @@ class Database {
 
         $this->connection = new mysqli(SQL_HOST, SQL_UN, SQL_PW, SQL_NAME);
 
-        if($this->$connection->connect_error){
-            die("Database conncetion failed: " . $connection->connect_error);
+        if($this->connection->connect_error){
+            die("Database connection failed: " . connection->connect_error);
         }
-        echo("Connected Successfully");
     }
 
     public function query($query){
-        $result = mysqli_query($this->connection, $query);
+        return mysqli_query($this->connection, $query);
+    }
+
+    public function escape_string($string) {
+        $escaped_string = mysqli_real_escape_string($this->connection, $string);
+        return $escaped_string;
     }
 }
 

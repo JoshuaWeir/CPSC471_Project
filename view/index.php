@@ -1,6 +1,6 @@
 <!--A homepage/landing page, also includes a login/signup button, and a cancellation button.-->
 <?php
-    include_once "loader.php";
+    include_once dirname(__DIR__). "/loader.php";
 ?>
 <style><?php include "style.css"; ?> </style>
 

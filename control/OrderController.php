@@ -7,8 +7,8 @@ class OrderController extends Controller {
         $pOrders = array();
         $results = self::find_this_query("SELECT * FROM PurchaseOrder");
         foreach($results as $pOrder){
-            array_push($pOrders, new PurchaseOrder($pOrder["RegUserFlag"], $pOrder["ID"], 
-                $pOrder["Price"], $pOrder["Address"], $pOrder["NumberOfBooks"]));
+            $pOrders[] = new PurchaseOrder($pOrder["RegUserFlag"], $pOrder["ID"],
+                $pOrder["Price"], $pOrder["Address"], $pOrder["NumberOfBooks"]);
         }
         return $pOrders;
     }
