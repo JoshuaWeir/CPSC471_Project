@@ -53,14 +53,14 @@ include_once dirname(__DIR__). "/loader.php";
                 ?>
                 <tr>
                     <td>
-                        <a href="bookPage.php?book=<?= $book->getTitle();?>" methods="get">
+                        <a href="bookPage.php?book=<?= addslashes($book->getTitle());?>" methods="get">
                             <?= $book->getTitle(); ?>
                         </a>
                     </td>
-                    <td><?= ($book->getAuthor()); ?></td>
+                    <td><?= $book->getAuthor(); ?></td>
                     <td><?= $book->getISBN(); ?></td>
                     <td>$<?= number_format($book->getPrice(),2,'.','');?></td>
-                    <td><?= date('m/d/Y', $book->getReleaseDate()); ?></td>
+                    <td><?=  $book->getReleaseDate(); ?></td>
                 </tr>
             <?php
             endforeach;

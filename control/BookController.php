@@ -18,7 +18,7 @@ class BookController extends Controller {
         $table = "{$genre}Book";
         $books = array();
         $results = self::find_this_query("SELECT * FROM {$table}, Book WHERE {$table}.ID = Book.ID");
-        switch($genre){
+        switch($genre) {
 
         }
         foreach($results as $book){
@@ -30,11 +30,7 @@ class BookController extends Controller {
 
     public function getNewBooks(){
         $newBooks = array();
-        $today = date("Y-m-d");
-        $yesterday = date("Y-m-d",strtotime("-1 days"));
-        $twodays = date("Y-m-d",strtotime("-2 days"));
-        $results = self::find_this_query("SELECT * FROM Book WHERE ReleaseDate LIKE '%$today%' OR 
-            ReleaseDate LIKE '%$yesterday%' OR ReleaseDate = '%$twodays%'");
+        $results = self::find_this_query("SELECT * FROM Book WHERE ReleaseDate >= NOW() - INTERVAL 3 DAY");
 
         foreach($results as $book) {
             $newBooks[] = new Book($book["ReleaseDate"], $book["InventoryDate"], $book["Price"],
@@ -45,11 +41,11 @@ class BookController extends Controller {
 
     public function getSaleBooks(){
         $saleBooks = array();
-        $threeweeks = date("Y-m-d",strtotime("-21 days"));
-        $results = self::find_this_query("SELECT * FROM Book WHERE InventoryDate LIKE '%$threeweeks%'");
+        $results = self::find_this_query("SELECT * FROM Book WHERE InventoryDate <= NOW() - INTERVAL 21 DAY");
 
         foreach($results as $book){
-            $saleBooks[] = new Book($book["ReleaseDate"], $book["InventoryDate"], $book["Price"],
+            $newPrice = $book["Price"] - 3;
+            $saleBooks[] = new Book($book["ReleaseDate"], $book["InventoryDate"], $newPrice,
                 $book["ISBN"], $book["ID"], $book["Title"], $book["PublisherName"], $book["AuthorName"]);
         }
         return $saleBooks;

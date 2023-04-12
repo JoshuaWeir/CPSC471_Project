@@ -1,6 +1,16 @@
 <!--Cart page that shows the books in the current session, or in the cart.-->
 <?php
 include_once dirname(__DIR__). "/loader.php";
+
+if (isset($_POST["couponId"])){
+    $newPrice = OrderController::creditDiscount($_POST["couponId"], $_SESSION["Price"]);
+    if ($newPrice) {
+        $_SESSION["Price"] = $newPrice;
+        $message = "Credit successfully applied. Not usable anymore!";
+    } else{
+        $message = "The Credit is not applicable!";
+    }
+}
 ?>
 <style><?php include "style.css"; ?> </style>
 
@@ -64,13 +74,13 @@ include_once dirname(__DIR__). "/loader.php";
                         </ul>
                         <br>
 
-<!--                        <form method="post" action="orderPage.php">-->
-<!--                            <div>-->
-<!--                                <input type="text" name="creditID" class="form-control" id="inputPassword2" placeholder="Credit ID">-->
-<!--                            </div>-->
-<!--                            <br>-->
-<!--                            <button type="submit" class="btn btn-primary mb-2">Apply Credit</button>-->
-<!--                        </form>-->
+                        <form method="post" action="orderPage.php">
+                            <div>
+                                <input type="text" name="creditID" class="form-control" id="inputPassword2" placeholder="Credit ID">
+                            </div>
+                            <br>
+                            <button type="submit" class="btn btn-primary mb-2">Apply Credit</button>
+                        </form>
 
                         <?php
                         if (isset($message)) {
