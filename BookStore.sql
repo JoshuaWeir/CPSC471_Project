@@ -204,8 +204,9 @@ CREATE TABLE Sold (
 );
 
 INSERT INTO Admin VALUES (1,"admin1","admin1@gmail.com","12345","Administrator","123 Road NE, Calgary", "2000-12-02");
+INSERT INTO RegisteredUser VALUES (0, "guest", "temp", "temp", "guest", "temp", "0001-01-01", 0, NULL, NULL, NULL, 1);
 INSERT INTO RegisteredUser VALUES (2, "joshUser", "josh@gmail.com", "qwerty", "Josh Weir", "Airdrie, AB", "2001-03-30", 10, NULL, NULL, NULL, 1);
-INSERT INTO RegisteredUser VALUES (3, "tyUser", "ty@gmail.com", "password", "Ty Pilling", "Calgary, AB", "2001-05-10", 15, NULL, NULL, NULL, 1);
+INSERT INTO RegisteredUser VALUES (3, "tyUser", "ty@gmail.com", "1234", "Ty Pilling", "Calgary, AB", "2001-05-10", 15, NULL, NULL, NULL, 1);
 INSERT INTO RegisteredUser VALUES (4, "ernestUser", "ernest@gmail.com", "pass", "Ernest Sarna", "Calgary, AB", "2001-10-08", 12, NULL, NULL, NULL, 1);
 
 INSERT INTO Publisher VALUES ("Rocky Mountain Books", "Calgary, AB", "403-271-3145");
