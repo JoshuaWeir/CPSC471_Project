@@ -2,11 +2,8 @@
 <?php
 include_once dirname(__DIR__). "/loader.php";
 //TODO: Implement both controller connections, and front-end view.
+$_SESSION["currentBook"] = $_GET['book'];
 
-$pc = new PurchaseController();
-$pc->searchBooks($_GET["book"]);
-
-$_SESSION["pcObject"] = $pc;
 ?>
 <style><?php include "style.css"; ?> </style>
 

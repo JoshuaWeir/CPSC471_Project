@@ -2,28 +2,12 @@
 <?php
 include_once dirname(__DIR__). "/loader.php";
 //TODO: Connect to Controllers
-    if (isset($_POST["username"])){
-        $_SESSION["book"]["username"] = $_POST["username"];
-    }
 
-    if (isset($_POST["cancel"])){
-        unset($_SESSION["book"]);
-        redirect("index.php");
+if (isset($_POST["submit"])) {
+    if((new OrderController())->addPurchaseOrder()){
+    } else {
+        $message = "Something went wrong! Please try again.";
     }
-
-    if (isset($_POST["cancel"])){
-        unset($_SESSION["book"]);
-        redirect("index.php");
-    }
-
-    if (isset($_POST["creditID"])){
-        $newPrice = purchaseController::creditDiscount($_POST["creditID"], $_SESSION["book"]["price"]);
-        if ($newPrice){
-            $_SESSION["book"]["price"] = $newPrice;
-            $message = "Credit successfully applied. Not usable anymore!";
-        } else{
-            $message = "The Credit is not applicable!";
-        }
 }
 ?>
 <style><?php include "style.css"; ?> </style>
@@ -83,8 +67,8 @@ include_once dirname(__DIR__). "/loader.php";
 
                         <h5>Book details: </h5>
                         <ul class="list-group">
-                            <li class="list-group-item">Book: <b><?= $_SESSION["book"]["name"]?></b></li>
-                            <li class="list-group-item">Price: $<b><?= round($_SESSION["book"]["price"], 2)?></b></li>
+                            <li class="list-group-item">Book: <b><?= $_SESSION["currentBook"]?></b></li>
+                            <li class="list-group-item">Price: $<b><?= round($_SESSION["price"], 2)?></b></li>
                         </ul>
                         <br>
 
@@ -113,6 +97,15 @@ include_once dirname(__DIR__). "/loader.php";
                             <input type="text" name="cancel" hidden>
                             <button type="submit" class="btn btn-danger">Cancel</button>
                         </form>
+
+                        <?php
+                        if (isset($message)){
+                            echo "<div class='alert alert-warning' role='alert'>
+                                                      $message 
+                                                   </div>";
+                        }
+                        ?>
+
                     </div>
                 </div>
             </div>

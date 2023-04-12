@@ -4,10 +4,8 @@ include_once dirname(__DIR__). "/loader.php";
 
 //TODO: Connect to Controller
 if (isset($_POST["submit"])) {
-    if((new UserController)->register($_POST['name'], $_POST["address"], $_POST["email"], $_POST["birthdate"],
-        $_POST["username"], $_POST["password"], $_POST["paymentMethod"])){
-        echo "Success!";
-        redirect("loginPage.php");
+    if((new bookController)->addBook($_POST['publisher'], $_POST["author"], $_POST["ISBN"], $_POST["release"],
+        $_POST["price"], $_POST["title"])){
     } else {
         $message = "Something went wrong! Please try again.";
     }
@@ -42,76 +40,71 @@ if (isset($_POST["submit"])) {
                             <div class="row justify-content-center">
                                 <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
-                                    <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Create an Account</p>
+                                    <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Add a Book</p>
 
-                                    <form class="mx-1 mx-md-4" method="post" action="signupPage.php">
+                                    <form class="mx-1 mx-md-4" method="post" action="addPage.php">
 
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
-                                                <label class="form-label" for="name">Enter Your Name</label>
-                                                <input type="text" name="name" id="name"
-                                                       placeholder="Name..." class="form-control" />
+                                                <label class="form-label" for="title">Enter Book Title</label>
+                                                <input type="text" name="title" id="title"
+                                                       placeholder="Title..." class="form-control" />
                                             </div>
                                         </div>
 
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
-                                                <label class="form-label" for="address">Enter Your Address</label>
-                                                <input type="text" name="address" id="address"
-                                                       placeholder="Current Address..." class="form-control" />
+                                                <label class="form-label" for="author">Enter Book Author</label>
+                                                <input type="text" name="author" id="author"
+                                                       placeholder="Author..." class="form-control" />
                                             </div>
                                         </div>
 
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
-                                                <label class="form-label" for="email">Enter Your Email</label>
-                                                <input type="email" name="email" id="email"
-                                                       placeholder="Email Address..." class="form-control" />
-                                            </div>
-                                        </div>
-
-                                        <div class="d-flex flex-row align-items-center mb-4">
-                                            <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                                            <div class="form-outline flex-fill mb-0">
-                                                <label class="form-label" for="name">Enter Your Birthdate</label>
-                                                <input type="date" name="birthdate" id="birthdate"
-                                                       placeholder="Birthdate" class="form-control" />
-                                            </div>
-                                        </div>
-
-                                        <div class="d-flex flex-row align-items-center mb-4">
-                                            <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                                            <div class="form-outline flex-fill mb-0">
-                                                <label class="form-label" for="username">Create A Username</label>
-                                                <input type="text" name="username" id="username"
-                                                       placeholder="Username..." class="form-control" />
-                                            </div>
-                                        </div>
-
-                                        <div class="d-flex flex-row align-items-center mb-4">
-                                            <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-                                            <div class="form-outline flex-fill mb-0">
-                                                <label class="form-label" for="password">Create A Password</label>
-                                                <input type="password" name="password" id="password"
-                                                       placeholder="Password..." class="form-control" />
+                                                <label class="form-label" for="publisher">Enter Book Publisher</label>
+                                                <input type="text" name="publisher" id="publisher"
+                                                       placeholder="Publisher..." class="form-control" />
                                             </div>
                                         </div>
 
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
-                                                <label class="form-label" for="payment">Enter a Payment Number</label>
-                                                <input type="number" name="paymentMethod" id="payment"
-                                                       placeholder="Payment..." class="form-control" />
+                                                <label class="form-label" for="ISBN">Enter a Book ISBN</label>
+                                                <input type="number" name="ISBN" id="ISBN"
+                                                       placeholder="ISBN..." class="form-control" />
                                             </div>
                                         </div>
 
-                                        <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                            <button type="submit" name="submit" class="btn btn-primary btn-lg">Register</button>
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <label class="form-label" for="release">Enter Book Release</label>
+                                                <input type="date" name="release" id="release"
+                                                       placeholder="Release Date..." class="form-control" />
+                                            </div>
                                         </div>
+
+
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <label class="form-label" for="price">Enter a Book Price</label>
+                                                <input type="number" name="price" id="price"
+                                                       placeholder="Price..." class="form-control" />
+                                            </div>
+                                        </div>
+
+                                        <ul role="tablist" class="nav bg-light nav-pills rounded nav-fill mb-3">
+                                            <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                                <button type="submit" name="submit" class="btn btn-success btn-lg">Add Book</button>
+                                            </div>
+                                            <li class="nav-item"> <a type="submit" class="nav-link active btn btn-success" href="adminPage.php?"> <i class="fas fa-credit-card mr-2"></i> Return </a> </li>
+                                        </ul>
 
                                     </form>
 
@@ -134,9 +127,9 @@ if (isset($_POST["submit"])) {
 </head>
 
 <body>
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
-</html>
+</html><?php

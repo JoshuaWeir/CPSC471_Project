@@ -35,7 +35,7 @@ class BookController extends Controller {
         $twodays = date("Y-m-d",strtotime("-2 days"));
         $results = self::find_this_query("SELECT * FROM Book WHERE ReleaseDate LIKE '%$today%' OR 
             ReleaseDate LIKE '%$yesterday%' OR ReleaseDate = '%$twodays%'");
-        
+
         foreach($results as $book) {
             $newBooks[] = new Book($book["ReleaseDate"], $book["InventoryDate"], $book["Price"],
                 $book["ISBN"], $book["ID"], $book["Title"], $book["PublisherName"], $book["AuthorName"]);
@@ -47,7 +47,7 @@ class BookController extends Controller {
         $saleBooks = array();
         $threeweeks = date("Y-m-d",strtotime("-21 days"));
         $results = self::find_this_query("SELECT * FROM Book WHERE InventoryDate LIKE '%$threeweeks%'");
-        
+
         foreach($results as $book){
             $saleBooks[] = new Book($book["ReleaseDate"], $book["InventoryDate"], $book["Price"],
                 $book["ISBN"], $book["ID"], $book["Title"], $book["PublisherName"], $book["AuthorName"]);
@@ -55,7 +55,7 @@ class BookController extends Controller {
         return $saleBooks;
     }
 
-    public function searchBooks($search = ""){
+    public function searchBooks($search = "") {
         if($search = "") {
             $isbn = str_replace('-', '', $search);
             $foundBooks = array();
@@ -73,6 +73,40 @@ class BookController extends Controller {
             $foundBooks = $this->getAllBooks();
         }
         return $foundBooks;
+    }
+
+    public function addBook($pn, $an, $ISBN, $rd, $p, $t) {
+        $checkp = self::find_this_query("SELECT * FROM Publisher WHERE Name LIKE '%$pn'");
+        $checka = self::find_this_query("SELECT * FROM Author WHERE Name LIKE '%$an%'");
+        $result = self::find_this_query("SELECT * FROM Book WHERE ISBN LIKE '%$ISBN%'");
+        if(empty($result)) {
+            $place = "";
+            $date = date("Y/m/d");
+            if (empty($checkp)) {
+                self::insert("INSERT INTO Publisher VALUES ('$pn','$place' ,'$place')");
+            }
+            if (empty($checka)) {
+                self::insert("INSERT INTO Author VALUES ('$an', '$date', '$place', 1)");
+            }
+            $uniqueId = rand(100000, 999999);
+            self::insert("INSERT INTO Book VALUES ('$uniqueId',1, '$pn', '$an', '$ISBN','$rd','$date','$p','$t')");
+            return true;
+        } else {
+
+            return null;
+        }
+    }
+
+    public function removeBook($ISBN) {
+        $result = self::find_this_query("SELECT * FROM Book WHERE ISBN LIKE '%$ISBN%'");
+        if(empty($result)){
+            return null;
+        }
+        else{
+            self::delete("DELETE FROM Book WHERE ISBN LIKE '%$ISBN%'");
+            return true;
+        }
+
     }
 
 }

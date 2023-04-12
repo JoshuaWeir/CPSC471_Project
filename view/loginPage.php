@@ -1,17 +1,25 @@
 <!--Page for users to login using their username and password. Also routes to the welcome page if they log in.-->
 <?php
 include_once dirname(__DIR__). "/loader.php";
-//TODO: Connect to Controller
-    if (isset($_SESSION['login']) && $_SESSION['login']){
+    if (isset($_SESSION['loginu']) && $_SESSION['loginu']){
         redirect("welcomePage.php");
     }
+
+    if (isset($_SESSION['logina']) && $_SESSION['logina']){
+        redirect("adminPage.php");
+    }
+
+    $uc = new UserController();
 
     if(isset($_POST['submit'])) {
         $username = trim($_POST['username']);
         $password = trim($_POST['password']);
 
-        if (!AuthenticationController::verifyUser($username, $password)){
+        if (!$uc->userLogin($username, $password)){
             $message = "your username and/or password is incorrect, please try again.";
+        } else {
+            $user = $uc->userLogin($username, $password);
+            redirect("welcomePage.php");
         }
     }
 ?>

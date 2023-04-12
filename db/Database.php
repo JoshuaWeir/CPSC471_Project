@@ -25,9 +25,8 @@ class Database {
         return mysqli_query($this->connection, $query);
     }
 
-    public function escape_string($string) {
-        $escaped_string = mysqli_real_escape_string($this->connection, $string);
-        return $escaped_string;
+    public function delete($sql) {
+        mysqli_query($this->connection,$sql);
     }
 }
 

@@ -1,10 +1,10 @@
 <!--Page to search from all books within the database.-->
 <?php
 include_once dirname(__DIR__). "/loader.php";
-//TODO: Connect Controller
-    $bookController = new BookController();
-    @$bookController->searchBooks($_GET["search"]);
-//    unset($_SESSION["selectedBook"]);
+
+    $bc = new BookController();
+    @$bc->searchBooks($_GET["search"]);
+    unset($_SESSION["currentBook"]);
 
 ?>
 
@@ -46,7 +46,7 @@ include_once dirname(__DIR__). "/loader.php";
             </form>
         </div>
         <?php
-            $books = $bookController->getAllBooks();
+            $books = $bc->getAllBooks();
             ?>
             <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                 <thead>
@@ -64,17 +64,17 @@ include_once dirname(__DIR__). "/loader.php";
                 <?php
                 foreach ($books as $book):
                         ?>
-                        <tr>
-                            <td>
-                                <a href="bookPage.php?book=<?= $book->getTitle();?>" methods="get">
-                                    <?= $book->getTitle(); ?>
-                                </a>
-                            </td>
-                            <td><?= $book->getAuthor(); ?></td>
-                            <td><?= $book->getISBN(); ?></td>
-                            <td>$<?= number_format($book->getPrice(),2,'.','');?></td>
-                            <td><?=  $book->getReleaseDate(); ?></td>
-                        </tr>
+                    <tr>
+                        <td>
+                            <a href="bookPage.php?book=<?= $book->getTitle();?>" methods="get">
+                                <?= $book->getTitle(); ?>
+                            </a>
+                        </td>
+                        <td><?= $book->getAuthor(); ?></td>
+                        <td><?= $book->getISBN(); ?></td>
+                        <td>$<?= number_format($book->getPrice(),2,'.','');?></td>
+                        <td><?=  $book->getReleaseDate(); ?></td>
+                    </tr>
                     <?php
                 endforeach;
                 ?>

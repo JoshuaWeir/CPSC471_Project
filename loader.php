@@ -19,8 +19,7 @@ require_once(dirname(__DIR__)."/CPSC471_Project/model/ReturnOrder.php");
 require_once(dirname(__DIR__)."/CPSC471_Project/model/Credit.php");
 require_once(dirname(__DIR__)."/CPSC471_Project/control/BookController.php");
 require_once(dirname(__DIR__)."/CPSC471_Project/control/OrderController.php");
-require_once(dirname(__DIR__)."/CPSC471_Project/control/PurchaseController.php");
-require_once(dirname(__DIR__)."/CPSC471_Project/control/AuthenticationController.php");
+require_once(dirname(__DIR__)."/CPSC471_Project/control/UserController.php");
 require_once(dirname(__DIR__)."/CPSC471_Project/db/Database.php");
 require_once(dirname(__DIR__)."/CPSC471_Project/db/config.php");
 

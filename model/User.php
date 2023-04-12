@@ -10,7 +10,7 @@ class User {
     private $birthday;
 
     //ctor
-    public function User(&$id, &$name, &$address, &$username, &$password, &$email, &$bd){
+    public function __construct(&$id, &$name, &$address, &$username, &$password, &$email, &$bd){
         $this->ID = $id;
         $this->name = $name;
         $this->address = $address;

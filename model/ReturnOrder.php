@@ -8,7 +8,7 @@ class ReturnOrder {
 
     // Constructor
 
-    public function ReturnOrder(&$regUserFlag, &$id, &$price, &$credit, &$booksReturned) {
+    public function __construct(&$regUserFlag, &$id, &$price, &$credit, &$booksReturned) {
         $this->regUserFlag = $regUserFlag;
         $this->id = $id;
         $this->price = $price;

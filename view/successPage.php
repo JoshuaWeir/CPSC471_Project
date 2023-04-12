@@ -5,10 +5,10 @@ include_once dirname(__DIR__). "/loader.php";
 $purchaseOrderCreation = PurchaseController::purchaseOrderCreation(/*TODO: Create Order*/);
 
 //TODO: Unset current variables
-    unset($_SESSION[""]);
-    unset($_SESSION[""]);
-    unset($_SESSION[""]);
-    unset($_SESSION[""]);
+//    unset($_SESSION[""]);
+//    unset($_SESSION[""]);
+//    unset($_SESSION[""]);
+//    unset($_SESSION[""]);
 
     ?>
 <style><?php include "style.css"; ?> </style>
@@ -82,10 +82,6 @@ $purchaseOrderCreation = PurchaseController::purchaseOrderCreation(/*TODO: Creat
         <br/>
         <h5>Please keep the Order ID for returns and cancellation!</h5>
         <br/>
-<!--   Might not need due to navbar     -->
-<!--        <form method="get" action="index.php">-->
-<!--            <button type="submit" class="btn btn-primary">Return</button>-->
-<!--        </form>-->
     </div>
     </body>
     </html>

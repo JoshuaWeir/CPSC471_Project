@@ -2,14 +2,15 @@
 
 class Controller {
 
-    public static function find_this_query($sql) {
-
+    public static function find_this_query($sql)
+    {
         global $database;
 
         $result_set = $database->query($sql);
         $the_object_array = array();
 
-        while($row = mysqli_fetch_array($result_set)) {
+        while($row = mysqli_fetch_array($result_set))
+        {
             $the_object_array[] = $row;
         }
 
@@ -19,11 +20,18 @@ class Controller {
 public static function insert($sql){
         global $database;
 
-        if($database->insert($sql)){
-            echo "Successful";
+        if($database->insert($sql)) {
+            //echo "Successful";
         }
         else{
-            echo "Database Failure";
+            //echo "Database Failure";
         }
+    }
+
+    public static function delete($sql) {
+        global $database;
+
+        $database->delete($sql);
+
     }
 }

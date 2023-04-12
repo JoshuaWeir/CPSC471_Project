@@ -7,9 +7,9 @@ class RegisteredUser extends User{
     private $returnOrders = array();
 
     //ctor
-    public function RegisteredUser(&$id, &$n, &$a, &$un, &$pw, &$e, &$bd, &$p, &$pm, 
-        &$po, &$ro){
-        parent::User($id, $n, $a, $un, $pw, $e, $bd);
+    public function __construct(&$id, &$n, &$a, &$un, &$pw, &$e, &$bd, &$p, &$pm,
+                                &$po, &$ro){
+        parent::__construct($id, $n, $a, $un, $pw, $e, $bd);
         $this->points = $p;
         $this->paymentMethod = $pm;
         $this->purchaseOrders = $po;

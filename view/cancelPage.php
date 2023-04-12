@@ -1,6 +1,14 @@
 <!--Page to find a return order number-->
 <?php
 include_once dirname(__DIR__). "/loader.php";
+
+if (isset($_POST["submit"])) {
+    if((new OrderController())->addReturnOrder($_POST['orderID'], $_SESSION["userId"])){
+        redirect("confirmationPage.php");
+    } else {
+        $message = "Something went wrong! Please try again.";
+    }
+}
 ?>
 
 <style><?php include "style.css"; ?> </style>
@@ -33,34 +41,15 @@ include_once dirname(__DIR__). "/loader.php";
                     <div class="input-group">
                         <input id="1" class="form-control" type="number" name="orderID" placeholder="Order ID..."/>
                         <span class="input-group-btn">
-<button class="btn btn-primary" type="submit">
-<i class="glyphicon glyphicon-search" aria-hidden="true"></i> Search
-</button>
 </span>
                     </div>
                 </div>
             </form>
         </div>
 
-        <?php
-
-        $cc = new orderCancellingController();
-        if (isset($_GET["orderID"])):
-                    $_SESSION["cancellationOrderID"] = $_GET["orderID"];
-                    $message = "<div class='alert alert-success' role='alert'>
-                              <a href='confirmationPage.php'>
-                              Order found. Click here to process the cancellation!
-                              </a>
-                            </div>";
-                    echo ($message);
-            else:
-                ?>
-                <div class="alert alert-danger" role="alert">
-                    Order was not found! Please try again.
-                </div>
-            <?php
-        endif;
-        ?>
+        <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+            <button type="submit" name="submit" class="btn btn-success btn-lg">Return Order</button>
+        </div>
     </div>
 </div>
 

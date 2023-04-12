@@ -4,7 +4,7 @@ class SciFiBook extends Book{
     private $theme;
 
     //ctor
-    public function SciFiBook(&$rDate, &$iDate, &$price, &$isbn, &$id, &$title, &$publisher, &$author, &$theme){
+    public function __construct(&$rDate, &$iDate, &$price, &$isbn, &$id, &$title, &$publisher, &$author, &$theme){
         parent::__construct($rDate, $iDate, $price, $isbn, $id, $title, $publisher, $author);
         $this->theme = $theme;
     }

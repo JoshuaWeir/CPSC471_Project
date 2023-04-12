@@ -8,7 +8,7 @@ class Author {
     private $numOfBooks;
 
     //ctor
-    public function Author(&$name, &$birthDate, &$origin, &$shortBib, &$numOfBooks){ 
+    public function __construct(&$name, &$birthDate, &$origin, &$shortBib, &$numOfBooks){
         $this->name = $name;
         $this->birthDate = $birthDate;
         $this->countryOfOrigin = $origin;

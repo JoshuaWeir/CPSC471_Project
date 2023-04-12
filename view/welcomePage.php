@@ -2,12 +2,12 @@
 <?php
 include_once dirname(__DIR__). "/loader.php";
     //TODO: If logged in create fetch user to display name - Placeholder methods
-    if ($_SESSION["login"]):
-        $ac = new AuthenticationController();
-        $user = $ac->getUser();
+    if ($_SESSION["loginu"]):
+        $uc = new UserController();
+        $user = $uc->getUser($_SESSION["userId"]);
 
     if (isset($_GET["action"]) && $_GET["action"] == "logout") {
-        AuthenticationController::logOut();
+        UserController::logOut();
     }
 ?>
 

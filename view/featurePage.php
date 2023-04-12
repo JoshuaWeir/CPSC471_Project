@@ -3,7 +3,7 @@
 include_once dirname(__DIR__). "/loader.php";
 
     $bookController = new BookController();
-    unset($_SESSION["selectedBook"]);
+    //unset($_SESSION["selectedBook"]);
 
 ?>
 
