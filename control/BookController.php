@@ -112,7 +112,7 @@ class BookController extends Controller {
         $result = self::find_this_query("SELECT * FROM Book WHERE Title LIKE '%$t%'");
         if (!empty($result)) {
             return new Book($result[0]["ReleaseDate"], $result[0]["InventoryDate"], $result[0]["Price"],
-                $result[0]["ISBN"], $result[0]["ID"], $result[0]["Title"], $result[0]["PublisherName"], $book[0]["AuthorName"]);
+                $result[0]["ISBN"], $result[0]["ID"], $result[0]["Title"], $result[0]["PublisherName"], $result[0]["AuthorName"]);
         } else {
             echo "No book found.";
             return null;
