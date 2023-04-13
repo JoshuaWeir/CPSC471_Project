@@ -3,7 +3,7 @@
 class Admin extends User {
     //ctor
     public function Admin(&$id, &$n, &$a, &$un, &$pw, &$e, &$bd){
-        parent::User($id, $n, $a, $un, $pw, $e, $bd);
+        parent::__construct($id, $n, $a, $un, $pw, $e, $bd);
     }
 
     public function addBookToInventory($b){

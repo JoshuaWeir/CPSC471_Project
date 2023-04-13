@@ -4,8 +4,8 @@ class OtherBook extends Book{
     private $genre;
 
     //ctor
-    public function OtherBook(&$rDate, &$iDate, &$price, &$isbn, &$id, &$title, &$publisher, &$author, &$genre){
-        parent::Book($rDate, $iDate, $price, $isbn, $id, $title, $publisher, $author);
+    public function __construct(&$rDate, &$iDate, &$price, &$isbn, &$id, &$title, &$publisher, &$author, &$genre){
+        parent::__construct($rDate, $iDate, $price, $isbn, $id, $title, $publisher, $author);
         $this->genre = $genre;
     }
 

@@ -6,7 +6,7 @@ class Publisher {
    private $contactInfo; 
 
    //ctor
-   public function Publisher(&$name, &$address, &$contactInfo){
+   public function __construct(&$name, &$address, &$contactInfo){
         $this->name = $name;
         $this->address = $address;
         $this->contactInfo = $contactInfo;

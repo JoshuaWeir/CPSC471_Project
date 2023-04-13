@@ -4,8 +4,8 @@ class HistoryBook extends Book{
     private $era;
 
     //ctor
-    public function HistoryBook(&$rDate, &$iDate, &$price, &$isbn, &$id, &$title, &$publisher, &$author, &$era){
-        parent::Book($rDate, $iDate, $price, $isbn, $id, $title, $publisher, $author);
+    public function __construct(&$rDate, &$iDate, &$price, &$isbn, &$id, &$title, &$publisher, &$author, &$era){
+        parent::__construct($rDate, $iDate, $price, $isbn, $id, $title, $publisher, $author);
         $this->era = $era;
     }
 

@@ -5,7 +5,7 @@ class Credit {
 
     // Constructor
 
-    public function Credit(&$id, &$value) {
+    public function __construct(&$id, &$value) {
         $this->id = $id;
         $this->value = $value;
     }
