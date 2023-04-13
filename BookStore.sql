@@ -232,6 +232,9 @@ INSERT INTO Author VALUES ("Margaret Atwood", "1939-11-18", "Dystopian author", 
 INSERT INTO Author VALUES ("Suzanne Collins", "1962-08-10", "YA fiction author", 11);
 INSERT INTO Author VALUES ("Dan Brown", "1964-06-22", "Thriller author", 8);
 INSERT INTO Author VALUES ("Khaled Hosseini", "1965-03-04", "Historical fiction author", 4);
+INSERT INTO Author VALUES ("Joseph Heller", "1923-05-01", "General fiction author", 6);
+INSERT INTO Author VALUES ("Kurt Vonnegut", "1922-11-11", "Science fiction author", 12);
+INSERT INTO Author VALUES ("Gabriel Garcia Marquez", "1927-03-06", "General fiction author", 5);
 
 INSERT INTO Book VALUES (1,1,"Rocky Mountain Books", "Rick Riordan", 9784747332743, "2012-08-03", "2012-08-10", 13.99, "Percy Jackson");
 INSERT INTO Book VALUES (2,1,"HarperCollins", "J.R.R. Tolkien", 9780261103252, "1991-11-27", "1991-12-04", 19.99, "The Lord of the Rings");
@@ -246,8 +249,8 @@ INSERT INTO Book VALUES (10,1,"Doubleday Books", "Dan Brown", 9780385504201, "20
 INSERT INTO Book VALUES (11,1,"Riverhead Books", "Khaled Hosseini", 9781594480003, "2003-06-17", "2003-06-24", 14.00, "The Kite Runner");
 
 INSERT INTO Book VALUES (12,1,"Simon & Schuster", "Joseph Heller", 9780099536017, "1961-10-10", "2023-04-12", 8,99, "Catch 22");
-INSERT INTO Book VALUES (13,1,"Avon", "Kurt Vonnegut", 9780385333788, "1952-08-18", "2023-03-22", 5.99, "Player Piano");
-INSERT INTO Book VALUES (14,1,"Harper & Row", "Gabriel Garcia Marquez", 9780060740450, "1962-01-01", "2023-03-23", 14.00, "One Hundred Years of Solitude");
+INSERT INTO Book VALUES (13,1,"Simon & Schuster", "Kurt Vonnegut", 9780385333788, "1952-08-18", "2023-03-22", 5.99, "Player Piano");
+INSERT INTO Book VALUES (14,1,"HarperCollins", "Gabriel Garcia Marquez", 9780060740450, "1962-01-01", "2023-03-23", 14.00, "One Hundred Years of Solitude");
 
 INSERT INTO FantasyBook VALUES (1,"Greek Gods");
 INSERT INTO FantasyBook VALUES (2,"Dragons and Magic");
