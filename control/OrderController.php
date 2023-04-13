@@ -74,7 +74,7 @@ class OrderController extends Controller {
             $uid = 0;
         }
         $uniqueId = rand(100000, 999999);
-        self::insert("INSERT INTO PurchaseOrder VALUES ('$uniqueId', '$uid', '$price', '$address', '$flag')");
+        self::insert("INSERT INTO PurchaseOrder VALUES ('$uniqueId', '$uid', '$price', '$address', '$flag', 1)");
         $this->getPurchaseOrderByID($uniqueId);
         return true;
     }
@@ -97,7 +97,7 @@ class OrderController extends Controller {
             $price = $porder->getPrice();
             $uniqueId = rand(100000, 999999);
             $creditId = rand(1000,9999);
-            self::insert("INSERT INTO ReturnOrder VALUES ('$uniqueId', '$uid', '$price', '$flag', '$price', '$creditId')");
+            self::insert("INSERT INTO ReturnOrder VALUES ('$uniqueId', '$uid', '$price', '$flag', '$price', '$creditId', 1)");
             $this->getPurchaseOrderByID($uniqueId);
 
             self::insert("UPDATE RegisteredUser SET Points = Points + '$price' WHERE ID = '$id' ");
