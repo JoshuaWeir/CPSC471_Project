@@ -3,7 +3,6 @@
 ini_set('error_reporting',E_ALL);
 ini_set('display_errors',1);
 session_start();
- //Commented for Testing
 require_once(dirname(__DIR__)."/CPSC471_Project/model/User.php");
 require_once(dirname(__DIR__)."/CPSC471_Project/model/RegisteredUser.php");
 require_once(dirname(__DIR__)."/CPSC471_Project/model/Book.php");

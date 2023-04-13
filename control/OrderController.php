@@ -99,7 +99,26 @@ class OrderController extends Controller {
             $creditId = rand(1000,9999);
             self::insert("INSERT INTO ReturnOrder VALUES ('$uniqueId', '$uid', '$price', '$flag', '$price', '$creditId')");
             $this->getPurchaseOrderByID($uniqueId);
+
+            self::insert("UPDATE RegisteredUser SET Points = Points + '$price' WHERE ID = '$id' ");
             return true;
         }
+    }
+
+    public static function creditDiscount($id, $price){
+        $result = self::find_this_query("SELECT * FROM ReturnOrder WHERE CreditID = '$id'");
+        if (empty($result)){
+                echo 'Order not found.';
+                return null;
+            } else {
+            $credit = new ReturnOrder($result[0]["RegUserFlag"],$result[0]["ID"],$result[0]["Price"],
+            $result[0]["CreditValue"],$result[0][1]);
+            $return = $price - $credit->getCredit();
+            if($return < 0) {
+                $return = 0;
+            }
+            self::insert("UPDATE ReturnOrder SET CreditValue = 0 WHERE CreditID = '$id' ");
+            return $return;
+            }
     }
 }
