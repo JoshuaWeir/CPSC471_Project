@@ -7,7 +7,7 @@ class Database {
     public $connection;
 
     function __construct(){
-        //mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
         $this->connection = new mysqli(SQL_HOST, SQL_UN, SQL_PW, SQL_NAME);
 
         if($this->connection->connect_error){

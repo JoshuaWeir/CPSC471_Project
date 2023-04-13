@@ -248,7 +248,7 @@ INSERT INTO Book VALUES (9,1,"Scholastic Press", "Suzanne Collins", 978043902348
 INSERT INTO Book VALUES (10,1,"Doubleday Books", "Dan Brown", 9780385504201, "2003-03-18", "2003-03-25", 24.95, "The Da Vinci Code");
 INSERT INTO Book VALUES (11,1,"Riverhead Books", "Khaled Hosseini", 9781594480003, "2003-06-17", "2003-06-24", 14.00, "The Kite Runner");
 
-INSERT INTO Book VALUES (12,1,"Simon & Schuster", "Joseph Heller", 9780099536017, "1961-10-10", "2023-04-12", 8,99, "Catch 22");
+INSERT INTO Book VALUES (12,1,"Simon & Schuster", "Joseph Heller", 9780099536017, "1961-10-10", "2023-04-12", 8.99, "Catch 22");
 INSERT INTO Book VALUES (13,1,"Simon & Schuster", "Kurt Vonnegut", 9780385333788, "1952-08-18", "2023-03-22", 5.99, "Player Piano");
 INSERT INTO Book VALUES (14,1,"HarperCollins", "Gabriel Garcia Marquez", 9780060740450, "1962-01-01", "2023-03-23", 14.00, "One Hundred Years of Solitude");
 
